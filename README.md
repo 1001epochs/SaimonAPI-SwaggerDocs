@@ -2,7 +2,8 @@
 
 ## Overview
 
-**SaimonAPI** is a comprehensive and user-friendly API that enables users to seamlessly integrate document analysis and chat functionalities into their applications. With our API, a user can easily register, analyze documents, and engage in dynamic conversations with them. 
+**SaimonAPI** is a comprehensive and user-friendly API that enables users to seamlessly integrate document analysis and chat functionalities into their applications. With our API, a user can easily register, analyze documents, and engage in dynamic conversations with them.
+
 [Documentation](https://1001epochs.github.io/SaimonAPI-SwaggerDocs/).
 
 ## Key Features
