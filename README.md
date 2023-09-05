@@ -1,58 +1,72 @@
-# How to host Swagger API documentation with GitHub Pages
-[<img alt="The blog of Peter Evans: How to Host Swagger Documentation With Github Pages" title="View blog post" src="https://peterevans.dev/img/blog-published-badge.svg">](https://peterevans.dev/posts/how-to-host-swagger-docs-with-github-pages/)
+# Saimon API
 
-This repository is a template for using the [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for your API and host it for free with GitHub Pages.
+## Overview
 
-The template will periodically auto-update the Swagger UI dependency and create a pull request. See the [GitHub Actions workflow here](.github/workflows/update-swagger.yml).
+**SaimonAPI** is a comprehensive and user-friendly API that enables users to seamlessly integrate document analysis and chat functionalities into their applications. With our API, a user can easily register, analyze documents, and engage in dynamic conversations with them. 
+[Documentation](https://1001epochs.github.io/SaimonAPI-SwaggerDocs/).
 
-The example API specification used by this repository can be seen hosted at [https://peter-evans.github.io/swagger-github-pages](https://peter-evans.github.io/swagger-github-pages/).
+## Key Features
 
-## Steps to use this template
+- **User Registration**: Streamline user onboarding with our user registration feature. Users can register and preview their profiles effortlessly. Access permissions are automatically adjusted based on the selected subscription tier. This ensures that users enjoy the features and usage limits corresponding to their subscription level.
 
-1. Click the `Use this template` button above to create a new repository from this template.
+- **Document Interaction**: Upload documents and engage in interactive conversations with them. Easily analyze and gain insights through features such as text extraction and analysis. Our API also keeps a comprehensive chat history, allowing users to review and reference previous interactions for a complete and immersive user experience.
 
-2. Go to the settings for your repository at `https://github.com/{github-username}/{repository-name}/settings` and enable GitHub Pages.
+- **Database Integration**: Seamlessly store document details and user data in a secure and efficient PostgreSQL database, ensuring data integrity and accessibility.
 
-    ![Headers](/screenshots/swagger-github-pages.png?raw=true)
+-   **Stripe Integration**: Handle subscription payments seamlessly with Stripe. Payment links are displayed in your frontend application for a user-friendly payment experience.
+
+## Pricing
+- **Subscription Tiers**:
+
+  - **Basic**: 
+    - Messages: 30
+    - Max Documents: 2
+    - Price: £10
+
+  - **Premium**:
+    - Messages: 100
+    - Max Documents: 5
+    - Price: £20
+
+  - **Pro**:
+    - Messages: 500
+    - Max Documents: 10
+    - Price: £30
+
+The subscription tiers come with predefined message limits and maximum document allowances. However, you have the flexibility to adjust these limits and pricing through Stripe and API configuration to suit your specific needs.
+
+## Getting Started for Developers
+
+**SaimonAPI** is under active development and is built using FastAPI. It is preconfigured to connect to a PostgreSQL instance upon startup, with PostgreSQL typically running using Docker.
+
+Developers should follow these steps to get started:
+
+1. **Clone the Repository**: Clone the **SaimonAPI** repository from [GitHub Repository Link](https://github.com/1001epochs/).
+
+2. **Install Requirements**: Ensure you have the required dependencies installed. Install them using the following command:
+
+   ```
+   pip install -r requirements.txt
+	```
+3.  **Run PostgreSQL**: Start a PostgreSQL instance using Docker or set up a PostgreSQL database as per your requirements. Modify the database configuration in the API accordingly.
     
-3. Browse to the Swagger documentation at `https://{github-username}.github.io/{repository-name}/`.
-
-
-## Steps to manually configure in your own repository
-
-1. Download the latest stable release of the Swagger UI [here](https://github.com/swagger-api/swagger-ui/releases).
-
-2. Extract the contents and copy the "dist" directory to the root of your repository.
-
-3. Move the file "index.html" from the directory "dist" to the root of your repository.
-    ```
-    mv dist/index.html .
-    ```
+4.  **Start the API**: Run the API using the following command:
+	   ```
+	   uvicorn main:app --reload
+	  ```
+ 3.  This will start the API locally, and it will be accessible at `http://127.0.0.1:8000`.
     
-4. Copy the YAML specification file for your API to the root of your repository.
-
-5. Edit [dist/swagger-initializer.js](dist/swagger-initializer.js) and change the `url` property to reference your local YAML file. 
-    ```javascript
-        window.ui = SwaggerUIBundle({
-            url: "swagger.yaml",
-        ...
-    ```
-    Then fix any references to files in the "dist" directory.
-    ```html
-    ...
-    <link rel="stylesheet" type="text/css" href="dist/swagger-ui.css" >
-    <link rel="icon" type="image/png" href="dist/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="dist/favicon-16x16.png" sizes="16x16" />    
-    ...
-    <script src="dist/swagger-ui-bundle.js"> </script>
-    <script src="dist/swagger-ui-standalone-preset.js"> </script>    
-    ...
-    ```
+4.  **Explore the API**: Although detailed documentation is still in progress, you can access the API's Swagger documentation to explore available endpoints and interact with the API by visiting `http://127.0.0.1:8000/docs`.
     
-6. Go to the settings for your repository at `https://github.com/{github-username}/{repository-name}/settings` and enable GitHub Pages.
 
-    ![Headers](/screenshots/swagger-github-pages.png?raw=true)
-    
-7. Browse to the Swagger documentation at `https://{github-username}.github.io/{repository-name}/`.
+Feel free to contribute to the development of **SaimonAPI** and check for updates in the repository as development progresses.
+ 
+## Support
 
-   The example API specification used by this repository can be seen hosted at [https://peter-evans.github.io/swagger-github-pages](https://peter-evans.github.io/swagger-github-pages/).
+Our dedicated team is available to assist you with any questions or issues you may encounter. Contact us via email or your contact person.
+
+### Known Issues
+- [ ] Internal server error - failed response, when auth token is invalid 
+- [ ] Sends Entire chat history with request, It is bound to run into rate limit issues. send last 20~30 messages
+- [ ] Add reset restriction on event renewed.
+- [ ] add page restriction.
